@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import "./globals.css";
 import { Manrope as FontSans } from "next/font/google";
-
+import { Analytics } from '@vercel/analytics/next';
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -66,6 +66,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
             {children}
+            <Analytics />
             <Navbar />
           </TooltipProvider>
         </ThemeProvider>
