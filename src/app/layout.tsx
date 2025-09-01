@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Manrope as FontSans } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
+import { Toaster } from 'sonner';
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -68,6 +69,7 @@ export default function RootLayout({
             {children}
             <Analytics />
             <Navbar />
+            <Toaster />
           </TooltipProvider>
         </ThemeProvider>
       </body>

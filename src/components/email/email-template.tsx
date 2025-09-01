@@ -6,7 +6,7 @@ interface EmailTemplateProps {
   message: string;
 }
 
-export default function EmailTemplate({ firstName, email, message }: EmailTemplateProps) {
+export function EmailTemplate({ firstName, email, message }: EmailTemplateProps) {
   return (
     <div>
       <h1>New Contact Form Submission</h1>
