@@ -11,7 +11,6 @@ import ContactFormPreview from "@/components/contact-us";
 import { techLogos } from "@/data/tech-logos";
 const BLUR_FADE_DELAY = 0.04;
 
-
 export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-12">
@@ -21,12 +20,12 @@ export default function Page() {
             <div className="flex-col flex flex-1 space-y-1.5">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                className="text-3xl font-serif tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
                 text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
               />
               <BlurFadeText
-                className="max-w-[600px] md:text-xl"
+                className="max-w-[600px] md:text-xl "
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
@@ -98,33 +97,30 @@ export default function Page() {
         </div>
       </section>
       <section id="skills">
-        <div >
+        <div>
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <h2 className="text-xl font-bold gap-y-3">Skills</h2>
-          <LogoLoop
-            logos={techLogos}
-            speed={20}
-            direction="left"
-            logoHeight={38}
-            gap={40}
-            scaleOnHover={true}
-            fadeOut
-          />
+            <LogoLoop
+              logos={techLogos}
+              speed={20}
+              direction="left"
+              logoHeight={38}
+              gap={40}
+              scaleOnHover={true}
+              fadeOut
+            />
           </BlurFade>
         </div>
       </section>
       <section id="projects">
         <div className="space-y-12 w-full ">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
-              <div className="space-y-2">
-                <h2 className="text-xl font-bold">
-                  Check out my latest work
-                </h2>
-                <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
-                </p>
+            <div className="space-y-2">
+              <h2 className="text-xl font-bold">Check out my latest work</h2>
+              <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+                I&apos;ve worked on a variety of projects, from simple websites
+                to complex web applications. Here are a few of my favorites.
+              </p>
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
@@ -149,10 +145,10 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="contact" >
-          <BlurFade delay={BLUR_FADE_DELAY * 17}>
-            <ContactFormPreview/>
-          </BlurFade>
+      <section id="contact">
+        <BlurFade delay={BLUR_FADE_DELAY * 17}>
+          <ContactFormPreview />
+        </BlurFade>
       </section>
     </main>
   );

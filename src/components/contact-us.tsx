@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import {
   Form,
@@ -12,76 +12,80 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Button } from '@/components/ui/button'
+} from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const contactFormSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email address'),
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
   message: z.string().optional(),
-})
+});
 
-const formSchema = contactFormSchema
+const formSchema = contactFormSchema;
 
 export default function ContactFormPreview() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      message: '',
+      name: "",
+      email: "",
+      message: "",
     },
-  })
+  });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const response = await fetch('/api/send', {
-        method: 'POST',
+      const response = await fetch("/api/send", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        throw new Error("Failed to send message");
       }
 
       const result = await response.json();
-      
+
       if (result.success) {
-        toast.success('Your message has been sent successfully!');
+        toast.success("Your message has been sent successfully!");
         form.reset(); // Reset the form after successful submission
       } else {
-        throw new Error(result.error || 'Failed to send message');
+        throw new Error(result.error || "Failed to send message");
       }
     } catch (error) {
-      console.error('Error submitting contact form', error);
-      toast.error('Failed to send your message. Please try again.');
+      console.error("Error submitting contact form", error);
+      toast.error("Failed to send your message. Please try again.");
     }
   }
 
   return (
     <div className="flex  h-full w-full ">
       <Card className="max-w-full w-full ">
-        <CardHeader className='mb-4 space-y-2'>
+        <CardHeader className="mb-4 space-y-2">
           <CardTitle className="text-xl font-bold">Get in touch</CardTitle>
-          <CardDescription className='prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert'>
-            Send me a message and I&apos;ll get back to you as soon as possible.
+          <CardDescription className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+            I’m always open to collaborating or just talking tech. Drop me a
+            message below.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8  justify-center content-center flex ">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8  justify-center content-center flex "
+            >
               <div className="grid gap-4 w-full">
                 {/* Name Field */}
                 <FormField
@@ -154,5 +158,5 @@ export default function ContactFormPreview() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
